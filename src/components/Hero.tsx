@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
         </div>
         <div className="hero-image">
           <img 
-            src="/images/rami-profile-pic.png" 
+            src="./images/rami-profile-pic.png" 
             alt="Rami Khalil - Software Engineer" 
             className="hero-profile-img"
             onError={(e) => {
