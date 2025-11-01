@@ -1,0 +1,188 @@
+/* Global Styles and CSS Variables */
+:root {
+  /* Clean Software Engineer Theme */
+  --bg-primary: linear-gradient(135deg, #0d1117 0%, #161b22 30%, #21262d 70%, #30363d 100%);
+  --bg-secondary: rgba(33, 38, 45, 0.8);
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --accent-primary: #58a6ff;
+  --accent-secondary: #388bfd;
+  --accent-hover: #79c0ff;
+  --primary-color: #58a6ff;
+  --card-bg: rgba(33, 38, 45, 0.6);
+  --nav-bg: rgba(13, 17, 23, 0.95);
+  --scrollbar-bg: #21262d;
+  --scrollbar-thumb: #58a6ff;
+  --border-color: rgba(48, 54, 61, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: linear-gradient(135deg, #fafbff 0%, #f0f4ff 30%, #e7efff 70%, #dbeafe 100%);
+  --bg-secondary: rgba(79, 70, 229, 0.02);
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --accent-primary: #4f46e5;
+  --accent-secondary: #7c3aed;
+  --accent-hover: #4338ca;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --nav-bg: rgba(255, 255, 255, 0.98);
+  --scrollbar-bg: #f1f5f9;
+  --scrollbar-thumb: #6366f1;
+  --border-color: rgba(226, 232, 240, 0.8);
+  --shadow-color: rgba(79, 70, 229, 0.08);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Button styles */
+.btn {
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #58a6ff 0%, #388bfd 100%);
+  color: #0d1117;
+  border: none;
+  box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #79c0ff 0%, #58a6ff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(88, 166, 255, 0.1);
+  border-color: var(--accent-hover);
+  transform: translateY(-2px);
+  color: var(--text-primary);
+}
+
+/* Section styles */
+.section {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+}

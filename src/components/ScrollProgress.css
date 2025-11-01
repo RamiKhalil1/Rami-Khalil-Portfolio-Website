@@ -1,0 +1,15 @@
+/* Scroll Progress Indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+  z-index: 10001;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+}
+
+[data-theme="light"] .scroll-progress {
+  box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+}

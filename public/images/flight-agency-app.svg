@@ -1,0 +1,44 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  <rect x="30" y="40" width="340" height="220" rx="12" fill="#16213e"/>
+  
+  <!-- Window header -->
+  <rect x="30" y="40" width="340" height="30" fill="#374151" rx="12"/>
+  <rect x="30" y="56" width="340" height="204" fill="#16213e"/>
+  <circle cx="50" cy="55" r="4" fill="#ef4444"/>
+  <circle cx="65" cy="55" r="4" fill="#fbbf24"/>
+  <circle cx="80" cy="55" r="4" fill="#10b981"/>
+  
+  <!-- Menu bar -->
+  <rect x="50" y="80" width="300" height="20" fill="#1f2937"/>
+  <text x="60" y="93" fill="#9ca3af" font-family="Arial, sans-serif" font-size="10">File  Edit  View  Flight  Help</text>
+  
+  <!-- Main content area -->
+  <rect x="50" y="110" width="200" height="130" fill="#111827" rx="4"/>
+  <rect x="260" y="110" width="90" height="130" fill="#111827" rx="4"/>
+  
+  <!-- Flight list -->
+  <rect x="60" y="120" width="180" height="15" fill="#4f46e5" rx="2"/>
+  <text x="65" y="130" fill="white" font-family="Arial, sans-serif" font-size="8">SYD → NYC</text>
+  <text x="210" y="130" fill="white" font-family="Arial, sans-serif" font-size="8">$899</text>
+  
+  <rect x="60" y="140" width="180" height="15" fill="#374151" rx="2"/>
+  <text x="65" y="150" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="8">NYC → LON</text>
+  <text x="210" y="150" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="8">$645</text>
+  
+  <rect x="60" y="160" width="180" height="15" fill="#374151" rx="2"/>
+  <text x="65" y="170" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="8">LON → PAR</text>
+  <text x="210" y="170" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="8">$201</text>
+  
+  <!-- Details panel -->
+  <text x="265" y="125" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="9" font-weight="600">Flight Details</text>
+  <text x="265" y="140" fill="#9ca3af" font-family="Arial, sans-serif" font-size="8">Departure: 09:30</text>
+  <text x="265" y="152" fill="#9ca3af" font-family="Arial, sans-serif" font-size="8">Arrival: 18:45</text>
+  <text x="265" y="164" fill="#9ca3af" font-family="Arial, sans-serif" font-size="8">Duration: 9h 15m</text>
+  
+  <!-- Button -->
+  <rect x="265" y="190" width="80" height="20" fill="#4f46e5" rx="4"/>
+  <text x="305" y="203" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">Book Flight</text>
+  
+  <text x="200" y="280" text-anchor="middle" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14" font-weight="600">Flight Agency App</text>
+</svg>
