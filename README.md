@@ -46,37 +46,44 @@ npm run preview
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+# Rami Khalil Portfolio Website
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+A modern React TypeScript portfolio website built with Vite, featuring dark/light theme toggle, particle animations, and responsive design.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Live Website
+🚀 [View Live Portfolio](https://ramikhalil1.github.io/Rami-Khalil-Portfolio-Website/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
+- Modern React with TypeScript and hooks
+- Dark/light theme toggle with localStorage persistence
+- Particle background animation system
+- Scroll progress indicator
+- Back to top button with smooth scrolling
+- Animated timeline for experience section
+- Responsive design for all devices
+- Professional portfolio sections (About, Skills, Education, Experience, Projects, Contact)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+- React 18 + TypeScript
+- Vite build tool
+- CSS modules for styling
+- React Icons
+- Modern ES6+ features
+
+## Development
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
+
+## Deployment
+Automatically deployed to GitHub Pages via GitHub Actions on every push to main branch.
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
