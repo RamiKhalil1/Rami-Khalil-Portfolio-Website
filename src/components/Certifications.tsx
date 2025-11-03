@@ -35,29 +35,16 @@ const Certifications: React.FC = () => {
       <div className="container">
         <h2 className="section-title">Certifications & Achievements</h2>
         <div className="certifications-grid">
-          <div className="certifications-grid-row top-row">
-            {certifications.slice(0, 3).map((cert, index) => (
-              <div key={index} className="cert-card">
-                <div className="cert-icon">
-                  {cert.icon}
-                </div>
-                <h3>{cert.title}</h3>
-                <p className="cert-issuer">{cert.issuer}</p>
-                <p className="cert-date">{cert.date}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="certifications-grid-row bottom-row">
-            <div className="cert-card">
+          {certifications.map((cert, index) => (
+            <div key={index} className="cert-card">
               <div className="cert-icon">
-                {certifications[3].icon}
+                {cert.icon}
               </div>
-              <h3>{certifications[3].title}</h3>
-              <p className="cert-issuer">{certifications[3].issuer}</p>
-              <p className="cert-date">{certifications[3].date}</p>
+              <h3>{cert.title}</h3>
+              <p className="cert-issuer">{cert.issuer}</p>
+              <p className="cert-date">{cert.date}</p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
