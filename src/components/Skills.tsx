@@ -8,6 +8,7 @@ import {
   FaCloud
 } from 'react-icons/fa';
 import { SiSwift, SiCplusplus } from 'react-icons/si';
+import Skills3D from './Skills3D';
 import './Skills.css';
 
 const Skills: React.FC = () => {
@@ -68,6 +69,19 @@ const Skills: React.FC = () => {
               <p>{skill.description}</p>
             </div>
           ))}
+        </div>
+        
+        {/* 3D Interactive Skills Visualization */}
+        <div className="skills-3d-section">
+          <h3 style={{ 
+            textAlign: 'center', 
+            color: 'var(--text-primary)', 
+            marginBottom: '1rem',
+            fontSize: '1.5rem'
+          }}>
+            Interactive Skills Proficiency
+          </h3>
+          <Skills3D />
         </div>
       </div>
     </section>

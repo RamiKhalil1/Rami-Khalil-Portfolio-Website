@@ -3,6 +3,8 @@ import Navigation from './components/Navigation';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 import ParticleBackground from './components/ParticleBackground';
+import Interactive3DBackground from './components/Interactive3DBackground';
+import FloatingTechIcons from './components/FloatingTechIcons';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -37,6 +39,8 @@ function App() {
 
   return (
     <div className="App">
+      <Interactive3DBackground />
+      <FloatingTechIcons />
       <ParticleBackground />
       <ScrollProgress />
       <Navigation />

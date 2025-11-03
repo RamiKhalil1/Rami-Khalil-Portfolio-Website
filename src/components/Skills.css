@@ -86,9 +86,33 @@
   color: #64748b;
 }
 
+/* 3D Skills Section */
+.skills-3d-section {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .skills-3d-section {
+  background: rgba(79, 70, 229, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.3);
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skills-3d-section {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+
+  .skills-3d-section h3 {
+    font-size: 1.2rem !important;
   }
 }
