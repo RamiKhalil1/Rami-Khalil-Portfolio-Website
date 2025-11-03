@@ -120,7 +120,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #4f46e5;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
@@ -252,7 +252,7 @@
 .contact-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
+  border-color: #4f46e5;
 }
 
 .contact-card-clickable {
@@ -261,12 +261,12 @@
 }
 
 .contact-card-clickable:focus {
-  outline: 2px solid var(--primary-color);
+  outline: 2px solid #4f46e5;
   outline-offset: 2px;
 }
 
 .contact-card-clickable:focus-visible {
-  outline: 2px solid var(--primary-color);
+  outline: 2px solid #4f46e5;
   outline-offset: 2px;
 }
 
@@ -281,7 +281,7 @@
 .contact-card-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -289,6 +289,7 @@
   margin: 0 auto 1rem;
   color: white;
   font-size: 1.25rem;
+  transition: all 0.3s ease;
 }
 
 .contact-card-content h4 {
@@ -306,8 +307,12 @@
   word-break: break-word;
 }
 
+.contact-card-clickable:hover .contact-link {
+  color: #4f46e5;
+}
+
 .contact-link:hover {
-  color: var(--primary-color);
+  color: #4f46e5;
 }
 
 /* Responsive Design */
@@ -354,6 +359,64 @@
   .resume-actions {
     gap: 0.75rem;
   }
+}
+
+/* Light theme specific adjustments */
+[data-theme="light"] .contact-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.1);
+}
+
+[data-theme="light"] .contact-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.15);
+  border-color: #4f46e5;
+}
+
+[data-theme="light"] .contact-card-icon {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+}
+
+[data-theme="light"] .contact-card-content h4 {
+  color: #1e293b;
+}
+
+[data-theme="light"] .contact-link {
+  color: #64748b;
+}
+
+[data-theme="light"] .contact-card-clickable:hover .contact-link {
+  color: #4f46e5;
+}
+
+[data-theme="light"] .contact-link:hover {
+  color: #4f46e5;
+}
+
+[data-theme="light"] .contact-info-title {
+  color: #1e293b;
+}
+
+[data-theme="light"] .resume-download,
+[data-theme="light"] .contact-form,
+[data-theme="light"] .contact-info {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.1);
+}
+
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea {
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  color: #1e293b;
+}
+
+[data-theme="light"] .form-group input::placeholder,
+[data-theme="light"] .form-group textarea::placeholder {
+  color: #64748b;
 }
 
 @media (max-width: 480px) {
