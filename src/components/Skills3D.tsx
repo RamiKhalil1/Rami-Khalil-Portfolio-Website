@@ -1,119 +1,163 @@
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text, RoundedBox, Html, Float, OrbitControls } from '@react-three/drei';
-import { Mesh, Color } from 'three';
+import { Text, RoundedBox, OrbitControls, Float } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface Skill3DProps {
   position: [number, number, number];
-  skill: {
-    title: string;
-    level: number; // 0-100
-    color: string;
-    icon?: string;
-  };
+  title: string;
+  description: string;
+  technologies: string[];
+  color: string;
+  category: string;
 }
 
-const Skill3D: React.FC<Skill3DProps> = ({ position, skill }) => {
-  const meshRef = useRef<Mesh>(null);
+const Skill3D: React.FC<Skill3DProps> = ({
+  position,
+  title,
+  description,
+  technologies,
+  color,
+  category
+}) => {
   const [hovered, setHovered] = useState(false);
+  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
-    if (meshRef.current) {
-      // Gentle rotation
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+    if (meshRef.current && groupRef.current) {
+      // Hover animation
+      const targetScale = hovered ? 1.05 : 1;
+      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
       
-      // Scale effect
-      const targetScale = hovered ? 1.1 : 1;
-      meshRef.current.scale.lerp({ x: targetScale, y: targetScale, z: targetScale }, 0.1);
+      // Gentle rotation based on category
+      const rotationSpeed = category === 'mobile' ? 0.01 : category === 'web' ? 0.008 : 0.006;
+      groupRef.current.rotation.y += rotationSpeed;
+      
+      // Floating effect
+      groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.1;
     }
   });
 
-  // Calculate height based on skill level
-  const height = (skill.level / 100) * 2 + 0.5;
-
   return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
-      <group position={position}>
-        {/* Skill bar */}
-        <RoundedBox
+    <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
+      <group 
+        ref={groupRef}
+        position={position}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
+      >
+        {/* Main skill card */}
+        <RoundedBox 
           ref={meshRef}
-          args={[0.3, height, 0.3]}
-          radius={0.02}
+          args={[2.5, 3, 0.3]} 
+          radius={0.1}
           smoothness={4}
-          position={[0, height / 2 - 1, 0]}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)}
         >
           <meshStandardMaterial 
-            color={new Color(skill.color)}
-            transparent 
+            color={color}
+            transparent
             opacity={hovered ? 0.9 : 0.7}
-            roughness={0.3}
-            metalness={0.5}
+            metalness={0.1}
+            roughness={0.2}
           />
         </RoundedBox>
 
-        {/* Base platform */}
+        {/* Category badge */}
         <RoundedBox
-          args={[0.8, 0.1, 0.8]}
-          radius={0.02}
-          position={[0, -1.05, 0]}
+          position={[0, 1.2, 0.2]}
+          args={[1.5, 0.3, 0.1]}
+          radius={0.05}
         >
-          <meshStandardMaterial 
-            color="#2d3748"
-            transparent 
-            opacity={0.8}
-          />
+          <meshStandardMaterial color="#1f2937" transparent opacity={0.9} />
+          <Text
+            position={[0, 0, 0.06]}
+            fontSize={0.1}
+            color="#e5e5e5"
+            anchorX="center"
+            anchorY="middle"
+            font="Arial"
+          >
+            {category.toUpperCase()}
+          </Text>
         </RoundedBox>
 
-        {/* Skill title */}
+        {/* Title */}
         <Text
-          position={[0, 1.5, 0]}
-          fontSize={0.12}
+          position={[0, 0.6, 0.2]}
+          fontSize={0.2}
           color="white"
           anchorX="center"
           anchorY="middle"
-          maxWidth={1.5}
-          font={undefined}
+          maxWidth={2.2}
+          font="Arial"
+          outlineWidth={0.01}
+          outlineColor="#000000"
         >
-          {skill.title}
+          {title}
         </Text>
 
-        {/* Skill percentage */}
+        {/* Description */}
         <Text
-          position={[0, -1.3, 0]}
+          position={[0, 0.1, 0.2]}
           fontSize={0.1}
-          color="#a0aec0"
+          color="#d1d5db"
           anchorX="center"
           anchorY="middle"
-          font={undefined}
+          maxWidth={2.1}
+          font="Arial"
+          lineHeight={1.2}
         >
-          {skill.level}%
+          {description}
         </Text>
 
-        {/* Hover tooltip */}
+        {/* Technologies */}
+        {technologies.slice(0, 4).map((tech, index) => {
+          const cols = 2;
+          const x = (index % cols - 0.5) * 1.2;
+          const y = -0.6 - Math.floor(index / cols) * 0.4;
+          
+          return (
+            <RoundedBox
+              key={tech}
+              position={[x, y, 0.2]}
+              args={[1, 0.25, 0.05]}
+              radius={0.03}
+            >
+              <meshStandardMaterial 
+                color={hovered ? "#6366f1" : "#4338ca"} 
+                transparent 
+                opacity={0.8} 
+              />
+              <Text
+                position={[0, 0, 0.03]}
+                fontSize={0.08}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                font="Arial"
+              >
+                {tech}
+              </Text>
+            </RoundedBox>
+          );
+        })}
+
+        {/* Hover effect - glowing outline */}
         {hovered && (
-          <Html
-            position={[0, 2, 0]}
-            center
-            style={{
-              pointerEvents: 'none',
-              userSelect: 'none',
-            }}
+          <RoundedBox 
+            args={[2.6, 3.1, 0.32]} 
+            radius={0.1}
+            position={[0, 0, -0.01]}
           >
-            <div style={{
-              background: 'rgba(0, 0, 0, 0.9)',
-              color: 'white',
-              padding: '8px 12px',
-              borderRadius: '8px',
-              fontSize: '12px',
-              whiteSpace: 'nowrap',
-              backdropFilter: 'blur(10px)',
-              border: `1px solid ${skill.color}`,
-            }}>
-              Proficiency: {skill.level}%
-            </div>
-          </Html>
+            <meshStandardMaterial 
+              color="#8b5cf6"
+              transparent
+              opacity={0.3}
+              emissive="#8b5cf6"
+              emissiveIntensity={0.2}
+            />
+          </RoundedBox>
         )}
       </group>
     </Float>
@@ -121,72 +165,117 @@ const Skill3D: React.FC<Skill3DProps> = ({ position, skill }) => {
 };
 
 const Skills3D: React.FC = () => {
-  const skills = [
-    { title: 'Swift', level: 90, color: '#FA7343' },
-    { title: 'React', level: 85, color: '#61DAFB' },
-    { title: 'TypeScript', level: 80, color: '#3178C6' },
-    { title: 'Python', level: 75, color: '#3776AB' },
-    { title: 'Java', level: 85, color: '#ED8B00' },
-    { title: 'Node.js', level: 70, color: '#339933' },
-    { title: 'MongoDB', level: 65, color: '#47A248' },
-    { title: 'AWS', level: 60, color: '#FF9900' },
+  const skillsData = [
+    {
+      title: "Mobile Development",
+      description: "iOS apps with cutting-edge AR/VR technologies and native performance",
+      technologies: ["Swift", "SwiftUI", "visionOS", "ARKit", "RealityKit", "Core Data"],
+      color: "#8b5cf6",
+      category: "mobile",
+      position: [-4, 2, 0] as [number, number, number]
+    },
+    {
+      title: "Web Development", 
+      description: "Modern web applications with responsive design and user experience focus",
+      technologies: ["JavaScript", "TypeScript", "React", "HTML5", "CSS3", "Node.js"],
+      color: "#3b82f6",
+      category: "web",
+      position: [0, 2, 0] as [number, number, number]
+    },
+    {
+      title: "Systems Programming",
+      description: "Enterprise applications and system-level programming solutions",
+      technologies: ["Java", "C++", "C#", "Python", "Desktop GUI", "FXML"],
+      color: "#10b981",
+      category: "systems",
+      position: [4, 2, 0] as [number, number, number]
+    },
+    {
+      title: "Database & Cloud",
+      description: "Scalable data solutions and cloud infrastructure management",
+      technologies: ["MongoDB", "SQL", "Firebase", "AWS", "Database Design", "API Integration"],
+      color: "#f59e0b",
+      category: "cloud",
+      position: [-2, -1, 0] as [number, number, number]
+    },
+    {
+      title: "Design & Tools",
+      description: "UI/UX design, accessibility standards, and development workflows",
+      technologies: ["Figma", "WCAG", "Git", "Docker", "WordPress", "Elementor"],
+      color: "#ef4444",
+      category: "design",
+      position: [2, -1, 0] as [number, number, number]
+    }
   ];
 
-  // Arrange skills in a circle
-  const positions: [number, number, number][] = skills.map((_, index) => {
-    const angle = (index / skills.length) * Math.PI * 2;
-    const radius = 3;
-    return [
-      Math.cos(angle) * radius,
-      0,
-      Math.sin(angle) * radius
-    ];
-  });
-
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '500px', 
-      position: 'relative',
-      marginTop: '2rem'
-    }}>
-      <Canvas camera={{ position: [0, 2, 8], fov: 60 }}>
+    <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ position: 'absolute', top: '2rem', left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}>
+        <h2 style={{ 
+          color: 'white', 
+          fontSize: '2.5rem', 
+          fontWeight: 'bold', 
+          textAlign: 'center',
+          textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+          margin: 0
+        }}>
+          Skills & Technologies
+        </h2>
+        <p style={{ 
+          color: '#d1d5db', 
+          fontSize: '1.1rem', 
+          textAlign: 'center',
+          textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+          marginTop: '0.5rem'
+        }}>
+          Interact with the 3D skill cards • Drag to rotate • Scroll to zoom
+        </p>
+      </div>
+
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 60 }}
+        style={{ background: 'transparent' }}
+      >
+        {/* Lighting setup */}
         <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={0.8} />
-        <pointLight position={[-10, 10, -10]} intensity={0.3} color="#4f46e5" />
-        <spotLight position={[0, 10, 0]} angle={0.3} intensity={0.5} />
-        
-        {skills.map((skill, index) => (
+        <pointLight position={[10, 10, 10]} intensity={0.6} color="#ffffff" />
+        <pointLight position={[-10, -10, -10]} intensity={0.4} color="#8b5cf6" />
+        <pointLight position={[0, 0, 10]} intensity={0.3} color="#3b82f6" />
+        <spotLight 
+          position={[0, 15, 5]} 
+          angle={0.5} 
+          penumbra={0.5} 
+          intensity={0.4}
+          color="#06b6d4"
+        />
+
+        {/* Skill Cards */}
+        {skillsData.map((skill) => (
           <Skill3D
-            key={index}
-            position={positions[index]}
-            skill={skill}
+            key={skill.title}
+            position={skill.position}
+            title={skill.title}
+            description={skill.description}
+            technologies={skill.technologies}
+            color={skill.color}
+            category={skill.category}
           />
         ))}
-        
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 4}
+
+        {/* Interactive Controls */}
+        <OrbitControls
+          enableZoom={true}
+          enablePan={true}
+          enableRotate={true}
+          zoomSpeed={0.6}
+          panSpeed={0.5}
+          rotateSpeed={0.4}
+          minDistance={4}
+          maxDistance={12}
+          maxPolarAngle={Math.PI / 1.3}
+          minPolarAngle={Math.PI / 6}
         />
       </Canvas>
-      
-      <div style={{
-        position: 'absolute',
-        bottom: '20px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        color: 'var(--text-secondary)',
-        fontSize: '14px',
-        textAlign: 'center',
-        background: 'rgba(0, 0, 0, 0.5)',
-        padding: '8px 16px',
-        borderRadius: '8px',
-        backdropFilter: 'blur(10px)'
-      }}>
-        Drag to rotate • Hover for details
-      </div>
     </div>
   );
 };
