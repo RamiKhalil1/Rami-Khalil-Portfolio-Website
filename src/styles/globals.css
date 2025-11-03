@@ -11,10 +11,15 @@
   --primary-color: #58a6ff;
   --card-bg: rgba(33, 38, 45, 0.6);
   --nav-bg: rgba(13, 17, 23, 0.95);
+  --nav-bg-scrolled: rgba(10, 10, 10, 0.95);
+  --nav-mobile-bg: rgba(10, 10, 10, 0.95);
+  --nav-link-bg: rgba(255, 255, 255, 0.08);
+  --nav-link-border: rgba(255, 255, 255, 0.15);
   --scrollbar-bg: #21262d;
   --scrollbar-thumb: #58a6ff;
   --border-color: rgba(48, 54, 61, 0.8);
   --shadow-color: rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Light Theme */
@@ -28,10 +33,15 @@
   --accent-hover: #4338ca;
   --card-bg: rgba(255, 255, 255, 0.95);
   --nav-bg: rgba(255, 255, 255, 0.98);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.98);
+  --nav-mobile-bg: rgba(255, 255, 255, 0.95);
+  --nav-link-bg: rgba(248, 250, 252, 0.8);
+  --nav-link-border: rgba(226, 232, 240, 0.6);
   --scrollbar-bg: #f1f5f9;
   --scrollbar-thumb: #6366f1;
   --border-color: rgba(226, 232, 240, 0.8);
   --shadow-color: rgba(79, 70, 229, 0.08);
+  --shadow-lg: 0 10px 30px rgba(148, 163, 184, 0.2);
 }
 
 /* Reset and Base Styles */
